@@ -12,5 +12,5 @@ persistent_volume:
   driver: local
   driver_opts:
     o: bind
-    type: mapping
+    type: none
     device: /home/ubuntu/group_flask/volumes
