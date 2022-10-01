@@ -13,4 +13,4 @@ persistent_volume:
   driver_opts:
     o: bind
     type: none
-    device: /home/ubuntu/group_flask/volumes
+    device: /home/ubuntu/groupflask/volumes
