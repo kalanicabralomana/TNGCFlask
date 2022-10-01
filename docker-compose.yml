@@ -1,5 +1,6 @@
 version: '3'
 services:
+<<<<<<< HEAD
         web:
                 image: group_flask_v1
                 build: .
@@ -7,6 +8,15 @@ services:
                         - "8086:8080"
                 volumes:
                         - persistent_volume:/app/volumes
+=======
+      web:
+              image: group_flask_v1
+              build: .
+              ports:
+                      - "8084:8080"
+              volumes:
+                      - persistent_volume:/app/volumes
+>>>>>>> de1fc9af31695df8e1319b13905f9bff5597a93e
 volumes:
   persistent_volume:
     driver: local
