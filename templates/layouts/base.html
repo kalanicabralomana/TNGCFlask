@@ -50,8 +50,8 @@ This HTML is setup as as a Jinja2 layout, coders use layouts for:
     <script src="{{ url_for('static', filename='js/three.r119.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vanta.birds.min.js') }}"></script>
     <script>
-        VANTA.BIRDS({
-            el: "body",
+        VANTA.GLOBE({
+            el: "#your-element-selector",
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
@@ -59,13 +59,11 @@ This HTML is setup as as a Jinja2 layout, coders use layouts for:
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            color1: 0x4aff,
-            birdSize: 2.00,
-            wingSpan: 10.00,
-            speedLimit: 13,
-            cohesion: 13.00,
-        })
-    </script>
+            color: 0x8c8c,
+            size: 1.50,
+            backgroundColor: 0x151e3c
+})
+</script>
 {% endblock %}
 
 </html>
