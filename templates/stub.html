@@ -10,7 +10,27 @@
     <div class="px-5 py-5 mx-auto">
         <h1 class="text-primary"><strong>Sdffs</strong></h1>
         <p class="text-secondary">GENENENNENENENENENNENENEN</p>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 {% endblock %}
 
-<!- This is turning off birds background from base.html -->
+{% block background %}
+    <script src="{{ url_for('static', filename='js/three.r119.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vanta.waves.min.js') }}"></script>
+    <script>
+        VANTA.WAVES({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1,
+            color: 0x641212,
+            scaleMobile: 1.00,
+            shininess: 10.00,
+            waveHeight: 400.00,
+            zoom: 0.3
+        })
+    </script>
+{% endblock %}

@@ -25,6 +25,10 @@ def stub():
 def team():
     return render_template("team.html")
 
+@app.route('/chess/')  # connects /team/ URL to chess() function
+def chess():
+    return render_template("chess.html")
+
 # this runs the application on the development server
 if __name__ == "__main__":
     app.run(debug=True)
