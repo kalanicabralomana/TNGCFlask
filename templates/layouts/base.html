@@ -32,7 +32,7 @@ This HTML is setup as as a Jinja2 layout, coders use layouts for:
     {% endblock %}
     </style>
 
-    <title>CS Team | {{ project }} </title>
+    <title>{{ basename }} | {{ project }} </title>
 
 </head>
 
@@ -47,10 +47,10 @@ This HTML is setup as as a Jinja2 layout, coders use layouts for:
 </body>
 
 {% block background %}
-    <script src="three.r134.min.js"></script>
-    <script src="vanta.globe.min.js"></script>
+    <script src="{{ url_for('static', filename='js/three.r119.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vanta.birds.min.js') }}"></script>
     <script>
-        VANTA.GLOBE({
+        VANTA.BIRDS({
             el: "body",
             mouseControls: true,
             touchControls: true,
@@ -58,12 +58,9 @@ This HTML is setup as as a Jinja2 layout, coders use layouts for:
             minHeight: 200.00,
             minWidth: 200.00,
             scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x8c8c,
-            size: 1.50,
-            backgroundColor: 0x151e3c
-})
-</script>
+            scaleMobile: 1.00
+        })
+    </script>
 {% endblock %}
 
 </html>
