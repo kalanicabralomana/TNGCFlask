@@ -2,7 +2,7 @@ FROM docker.io/python:3.9
 WORKDIR /app
 # --- Update environment and install python and pip ---
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y python3 python3-pip git
+  apt-get install -y python3 python3-pip git
 # --- Copy repo you updated with clone or pull ---
 COPY . /app
 # --- Install project specific dependencies ---
