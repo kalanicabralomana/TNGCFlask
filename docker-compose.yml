@@ -13,5 +13,5 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/ubuntu/groupflask/volumes
+      device: /home/ubuntu//volumes
 
