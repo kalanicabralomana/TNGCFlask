@@ -13,5 +13,5 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/ubuntu/TNGCFlask/volumes
+      device: /home/ubuntu/p3t6_tngc/volumes
 
