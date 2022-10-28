@@ -3,16 +3,15 @@ from flask_restful import Api, Resource # used for REST API building
 import requests  # used for testing 
 import random
 
-from model_jokes import *
-
-app_api = Blueprint('jokesapi', __name__,
-                   url_prefix= "/api/jokes")
+# Blueprints allow this code to be procedurally abstracted from main.py, meaning code is not all in one place
+app_api = Blueprint('api', __name__,
+                   url_prefix='/api/jokes')  # endpoint prefix avoid redundantly typing /api/jokes over and over
 
 # API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
 api = Api(app_api)
 
 class JokesAPI:
-    # not implemented
+    # not implemented, this would be where we would allow creation of a new Joke
     class _Create(Resource):
         def post(self, joke):
             pass
@@ -51,48 +50,45 @@ class JokesAPI:
             addJokeBooHoo(id)
             return jsonify(getJoke(id))
 
-    # building RESTapi resources/interfaces, these routes are added to Web Server
+    # building RESTapi interfaces, these routes are added to Web Server http://<server</api/jokes
     api.add_resource(_Create, '/create/<string:joke>')
-    api.add_resource(_Read, '/')
+    api.add_resource(_Read, '/')    # default, which returns all jokes
     api.add_resource(_ReadID, '/<int:id>')
     api.add_resource(_ReadRandom, '/random')
     api.add_resource(_ReadCount, '/count')
-    api.add_resource(_UpdateLike, '/like/<int:id>')
-    api.add_resource(_UpdateJeer, '/jeer/<int:id>')
+    api.add_resource(_UpdateLike, '/like/<int:id>/')
+    api.add_resource(_UpdateJeer, '/jeer/<int:id>/')
     
-if __name__ == "__main__": 
-    # server = "http://127.0.0.1:5000" # run local
-    server = 'http://tngc.nighthawkcodescrums.gq/' # run from web
-    url = server + "api/jokes"
-    responses = []  # responses list
+server = 'http://tngc.nighthawkcodescrums.gq/' # run from web server
+url = server + "api/jokes/"
+responses = []  # responses list
 
-    # get count of jokes on server
-    count_response = requests.get(url+"/count")
-    count_json = count_response.json()
-    count = count_json['count']
+# Get the count of jokes on server
+count_response = requests.get(url+"count")
+count_json = count_response.json()
+count = count_json['count']
 
-    # update likes/dislikes test sequence
-    num = str(random.randint(0, count-1)) # test a random record
-    responses.append(
-        requests.get(url+"/"+num)  # read joke by id
-        ) 
-    responses.append(
-        requests.put(url+"/like/"+num) # add to like count
-        ) 
-    responses.append(
-        requests.put(url+"/jeer/"+num) # add to jeer count
-        ) 
+# Update likes/dislikes test sequence
+num = str(random.randint(0, count-1)) # test a random record
+responses.append(
+    requests.get(url+num)  # Get/read joke by id
+    ) 
+responses.append(
+    requests.put(url+"like/"+num) # Put/add to like count
+    ) 
+responses.append(
+    requests.put(url+"jeer/"+num) # Put/add to jeer count
+    ) 
 
-    # obtain a random joke
-    responses.append(
-        requests.get(url+"/random")  # read a random joke
-        ) 
+# Get a random joke
+responses.append(
+    requests.get(url+"random")  # Get/read a random joke
+    ) 
 
-    # cycle through responses
-    for response in responses:
-        print(response)
-        try:
-            print(response.json())
-        except:
-            print("unknown error")
-            #hi
+# Cycle through and print responses
+for response in responses:
+    print(response)
+    try:
+        print(response.json())
+    except:
+        print("data error")
