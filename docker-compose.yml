@@ -7,7 +7,7 @@ services:
                       - "8036:8080"
               volumes:
                       - persistent_volume:/app/volumes
-                      - restart: unless-stopped
+                      restart: unless-stopped
 volumes:
   persistent_volume:
     driver: local
