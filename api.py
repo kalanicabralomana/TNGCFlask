@@ -3,11 +3,10 @@ from flask_restful import Api, Resource # used for REST API building
 import requests  # used for testing 
 import random
 
-from model_jokes import *
+from chess import *
 
 app_api = Blueprint('api', __name__,
-                   url_prefix='/api/jokes')
-
+                   url_prefix='/api/chess')
 # API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
 api = Api(app_api)
 
@@ -62,8 +61,8 @@ class JokesAPI:
     
 if __name__ == "__main__": 
     # server = "http://127.0.0.1:5000" # run local
-    server = 'https://flask.nighthawkcodingsociety.com' # run from web
-    url = server + "/api/jokes"
+    server = 'https://tngc.nighthawkcodescrums.gq' # run from web
+    url = server + "/api/chess"
     responses = []  # responses list
 
     # get count of jokes on server
