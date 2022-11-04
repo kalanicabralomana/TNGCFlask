@@ -34,11 +34,11 @@ class ChessAPI:
              
 
 
-api.add_resource(_GetAll, '/')
+    api.add_resource(_GetAll, '/')
 
-api.add_resource(_putTurn, '/turn/')
-api.add_resource(_putMove1, '/move1/<string:move1>')
-api.add_resource(_putMove2, '/move2/<string:move2>')
+    api.add_resource(_putTurn, '/turn/')
+    api.add_resource(_putMove1, '/move1/<string:move1>')
+    api.add_resource(_putMove2, '/move2/<string:move2>')
         
 
 if __name__ == "__main__": 
