@@ -27,7 +27,8 @@ class ChessAPI:
             return jsonify(data)
     class _putMove2(Resource):
         def put(self, move2):
-            data["moves"][1] = move2
+            data["moves"]
+            [1] = move2
             return jsonify(data)
 
 
@@ -44,4 +45,4 @@ class ChessAPI:
 if __name__ == "__main__": 
     #server = "http://127.0.0.1:5000" #local
     server = 'https://tngc.nighthawkcodescrums.gq' #web
-    url = server + "/api/chess/"
+    url = server + "/api/chess"
