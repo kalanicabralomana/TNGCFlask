@@ -6,7 +6,7 @@ import random
 from chess import *
 
 app_api = Blueprint('api', __name__,
-                   url_prefix='/api/chess')
+                   url_prefix='/api/jokes')
 # API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
 api = Api(app_api)
 
@@ -62,7 +62,7 @@ class JokesAPI:
 if __name__ == "__main__": 
     # server = "http://127.0.0.1:5000" # run local
     server = 'https://tngc.nighthawkcodescrums.gq' # run from web
-    url = server + "/api/chess"
+    url = server + "/api/jokes"
     responses = []  # responses list
 
     # get count of jokes on server

@@ -34,14 +34,14 @@ class ChessAPI:
              
 
 
-api.add_resource(_GetAll, '/')
+    api.add_resource(_GetAll, '/')
 
-api.add_resource(_putTurn, '/turn/')
-api.add_resource(_putMove1, '/move1/<string:move1>')
-api.add_resource(_putMove2, '/move2/<string:move2>')
+    api.add_resource(_putTurn, '/turn/')
+    api.add_resource(_putMove1, '/move1/<string:move1>')
+    api.add_resource(_putMove2, '/move2/<string:move2>')
         
 
 if __name__ == "__main__": 
-    server = "http://127.0.0.1:5000" #local
-    #server = 'https://tngc.nighthawkcodescrums.gq' #web
+    #server = "http://127.0.0.1:5000" #local
+    server = 'https://tngc.nighthawkcodescrums.gq' #web
     url = server + "/api/chess"
