@@ -27,8 +27,7 @@ class ChessAPI:
             return jsonify(data)
     class _putMove2(Resource):
         def put(self, move2):
-            data["moves"]
-            [1] = move2
+            data["moves"][1] = move2
             return jsonify(data)
 
 
