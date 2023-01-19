@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 
-from model.users import User
+from model_users import Users
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
@@ -29,7 +29,7 @@ class UserAPI:
             dob = body.get('dob')
 
             ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(name=name, 
+            uo = Users(name=name, 
                       uid=uid)
             
             ''' Additional garbage error checking '''
@@ -54,7 +54,7 @@ class UserAPI:
 
     class _Read(Resource):
         def get(self):
-            users = User.query.all()    # read/extract all users from database
+            users = Users.query.all()    # read/extract all users from database
             json_ready = [user.read() for user in users]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
 
