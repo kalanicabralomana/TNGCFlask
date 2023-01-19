@@ -74,8 +74,9 @@ class Users(UserMixin, db.Model):
     # notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes of instance variables within object
-    def __init__(self, name, email, password, phone):
+    def __init__(self, name, email="a@a.com", password="123pass", phone="100000000", userID="120", uid="120"):
         self.name = name
+        self.userID=userID
         self.email = email
         self.set_password(password)
         self.phone = phone

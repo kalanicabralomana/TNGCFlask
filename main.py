@@ -4,10 +4,12 @@ from flask import render_template  # import render_template from "public" flask 
 from __init__ import app  # Definitions initialization
 from chess import app_api2 # Blueprint import api definition
 from users import user_api
+from superCoolFile import chess_user_api
 from bp_projects.projects import app_projects # Blueprint directory import projects definition
 
 app.register_blueprint(app_api2) # register api routes
 app.register_blueprint(user_api)
+app.register_blueprint(chess_user_api)
 app.register_blueprint(app_projects) # register api routes
 
 @app.errorhandler(404)  # catch for URL not found
