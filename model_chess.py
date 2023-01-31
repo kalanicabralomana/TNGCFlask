@@ -18,7 +18,7 @@ class Users(UserMixin, db.Model):
     # notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes of instance variables within object
-    def __init__(self, name, uid="1", password="null", dob="11-11-1111"):
+    def __init__(self, name, uid="1", password="null", dob="11-11-1111", games=[]):
         self.uid = uid
         self.name = name
         self.dob = dob
@@ -94,9 +94,16 @@ class Users(UserMixin, db.Model):
     def get_id(self):
         return self.uid
 
+def getUser(uid):
+    users = Users.query.all()
+    for user in users:
+        if(user.get_id() == uid):
+            user_object = user
+    return user_object
+
 
 if __name__ == "__main__":
-    print("hello!")
+    print(getUser(420).dob)
     # """Create required directories"""
     # try:
     #     os.makedirs('volumes')
