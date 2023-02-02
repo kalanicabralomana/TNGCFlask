@@ -72,7 +72,12 @@ class UserAPI:
             body = request.get_json()
             user = getUser(uid)
             user.update_games(body)
-            
+    
+    class _DeleteUser(Resource):
+        def delete(self, uid):
+            user = getUser(uid)
+            user.delete()
+            return 'deleted user with uid ' + str(uid)
             
 
             
@@ -81,3 +86,4 @@ class UserAPI:
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
     api.add_resource(_UpdateChessGame, "/update_game/<int:uid>")
+    api.add_resource(_DeleteUser, "/delete_user/<int:uid>")

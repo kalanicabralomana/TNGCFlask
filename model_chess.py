@@ -99,7 +99,7 @@ class Users(UserMixin, db.Model):
     def update_games(self, game):
         self.games += "#" + game
         try:
-            db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
+            db.session.commit()
             return self
         except IntegrityError:
             db.session.remove()
@@ -110,10 +110,17 @@ def getUser(uid):
     for user in users:
         if(user.get_id() == uid):
             return user
-
+        
+def make_id():
+    users = Users.query.all()
+    uid = 0
+    for user in users:
+        if(user.get_id() > uid):
+            uid = user.get_id()
+    return uid + 1
 
 if __name__ == "__main__":
-    print(getUser(420).dob)
+    print(make_id())
     # """Create required directories"""
     # try:
     #     os.makedirs('volumes')
