@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
+from model_chess import getUser
 
 from model_chess import Users
 
@@ -57,7 +58,24 @@ class UserAPI:
             users = Users.query.all()    # read/extract all users from database
             json_ready = [user.read() for user in users]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
+            
+    class _GetUser(Resource):
+        def get(self, uid):
+            users = Users.query.all()
+            for user in users:
+                if(user.get_id() == uid):
+                    user_object = user
+            return user_object
+
+    class _UpdateChess(Resource):
+        def post(self):
+            body = request.get_json()
+            
+            
+
+            
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
+    api.add_resource(_UpdateChess, "/updateGame")

@@ -1,5 +1,5 @@
 import os
-
+from flask import jsonify, stringify
 from __init__ import db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +14,7 @@ class Users(UserMixin, db.Model):
     name = db.Column(db.String(255), unique=False, nullable=False)
     password = db.Column(db.String(255), unique=False, nullable=False)
     dob = db.Column(db.String(255), unique = False, nullable=False)
+    games = db.Column(db.String(255), unique = False, nullable=False)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     # notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
@@ -22,6 +23,7 @@ class Users(UserMixin, db.Model):
         self.uid = uid
         self.name = name
         self.dob = dob
+        self.games = games
         self.set_password(password)
 
     # returns a string representation of object, similar to java toString()
@@ -93,6 +95,9 @@ class Users(UserMixin, db.Model):
     # required for login_user, overrides id (login_user default) to implemented userID
     def get_id(self):
         return self.uid
+
+    def update_games(self, game):
+        self.games += "#" + game
 
 def getUser(uid):
     users = Users.query.all()
