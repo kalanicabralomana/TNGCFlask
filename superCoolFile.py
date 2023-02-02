@@ -67,9 +67,11 @@ class UserAPI:
                     user_object = user
             return user_object
 
-    class _UpdateChess(Resource):
-        def post(self):
+    class _UpdateChessGame(Resource):
+        def post(self, uid):
             body = request.get_json()
+            user = getUser(uid)
+            user.update_games(body)
             
             
 
@@ -78,4 +80,4 @@ class UserAPI:
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
-    api.add_resource(_UpdateChess, "/updateGame")
+    api.add_resource(_UpdateChessGame, "/update_game/<int:uid>")

@@ -1,5 +1,4 @@
 import os
-from flask import jsonify, stringify
 from __init__ import db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,7 +18,7 @@ class Users(UserMixin, db.Model):
     # notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes of instance variables within object
-    def __init__(self, name, uid="1", password="null", dob="11-11-1111", games=[]):
+    def __init__(self, name, uid="1", password="null", dob="11-11-1111", games=""):
         self.uid = uid
         self.name = name
         self.dob = dob
@@ -28,7 +27,7 @@ class Users(UserMixin, db.Model):
 
     # returns a string representation of object, similar to java toString()
     def __repr__(self):
-        return "Users(" + str(self.uid) + "," + self.name + "," + str(self.dob) + ")"
+        return "Users(" + str(self.uid) + "," + self.name + "," + str(self.dob) +  str(self.games) + ")"
 
     # CRUD create/add a new record to the table
     # returns self or None on error
@@ -49,7 +48,8 @@ class Users(UserMixin, db.Model):
             "uid": self.uid,
             "name": self.name,
             "password": self.password,
-            "dob": self.dob
+            "dob": self.dob,
+            "games": self.games
         }
 
     def read2(self):
@@ -98,13 +98,18 @@ class Users(UserMixin, db.Model):
 
     def update_games(self, game):
         self.games += "#" + game
+        try:
+            db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
+            return self
+        except IntegrityError:
+            db.session.remove()
+            return None
 
 def getUser(uid):
     users = Users.query.all()
     for user in users:
         if(user.get_id() == uid):
-            user_object = user
-    return user_object
+            return user
 
 
 if __name__ == "__main__":
