@@ -18,8 +18,8 @@ class Users(UserMixin, db.Model):
     # notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes of instance variables within object
-    def __init__(self, name, uid="1", password="null", dob="11-11-1111", games=""):
-        self.uid = uid
+    def __init__(self, name, uid="0", password="null", dob="11-11-1111", games=""):
+        self.uid = make_id()
         self.name = name
         self.dob = dob
         self.games = games
@@ -117,6 +117,8 @@ def make_id():
     for user in users:
         if(user.get_id() > uid):
             uid = user.get_id()
+    if (uid < 100):
+        return 100
     return uid + 1
 
 if __name__ == "__main__":
