@@ -22,7 +22,7 @@ class Users(UserMixin, db.Model):
         self.uid = make_id()
         self.name = name
         self.dob = dob
-        self.games = games
+        self.games = ""
         self.set_password(password)
 
     # returns a string representation of object, similar to java toString()
