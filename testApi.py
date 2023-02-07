@@ -17,7 +17,8 @@ class ChessAPI:
 
     class _get(Resource):
         def get(self):
-            return Users.printString()
+            user = Users(name="aname", password="apassword")
+            return user.read()
 
     class _push(Resource):
         def post(self):
