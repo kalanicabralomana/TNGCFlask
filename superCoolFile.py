@@ -57,14 +57,7 @@ class UserAPI:
             users = Users.query.all()    # read/extract all users from database
             json_ready = [user.read() for user in users]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
-            
-    class _GetUser(Resource):
-        def get(self, uid):
-            users = Users.query.all()
-            for user in users:
-                if(user.get_id() == uid):
-                    user_object = user
-            return user_object
+
 
     class _UpdateChessGame(Resource):
         def post(self, uid):
@@ -85,7 +78,7 @@ class UserAPI:
 
 
     # building RESTapi endpoint
-    api.add_resource(_Create, '/create')
+    # api.add_resource(_Create, '/create')
     api.add_resource(_Read, '/')
-    api.add_resource(_UpdateChessGame, "/update_game/<int:uid>")
-    api.add_resource(_DeleteUser, "/delete_user/<int:uid>")
+    # api.add_resource(_UpdateChessGame, "/update_game/<int:uid>")
+    # api.add_resource(_DeleteUser, "/delete_user/<int:uid>")
