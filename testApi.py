@@ -17,7 +17,10 @@ class ChessAPI:
 
     class _get(Resource):
         def get(self):
-            user = Users(name="aname", password="apassword")
+            try:
+                user = Users(name="aname", password="apassword")
+            except:
+                return "failed"
             return user.read()
 
     class _push(Resource):
