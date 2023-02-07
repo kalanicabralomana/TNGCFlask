@@ -45,10 +45,10 @@ class UserAPI:
             
             ''' #2: Key Code block to add user to database '''
             # create user in database
-            user = uo.create()
+            uo.create()
             # success returns json of user
-            if user:
-                return jsonify(user.read())
+            if uo:
+                return jsonify(uo.read())
             # failure returns error
             return {'message': f'Processed {name}, either a format error or User ID {uo.uid} is duplicate'}, 210
 
@@ -71,6 +71,11 @@ class UserAPI:
             body = request.get_json()
             user = getUser(uid)
             user.update_games(body)
+
+    class _DeleteGame(Resource):
+        def delete(self, uid, gameID):
+            user = getUser(uid)
+            
     
     class _DeleteUser(Resource):
         def delete(self, uid):
@@ -78,11 +83,18 @@ class UserAPI:
             user.delete()
             return 'deleted user with uid ' + str(uid)
             
+    class _GetAll(Resource):
+        def get(self):
+            users = Users.query.all()
+            if (users):
+                return str(users)
+            else:
+                return "didnt work"
 
             
 
     # building RESTapi endpoint
     api.add_resource(_Create, '/create')
-    api.add_resource(_Read, '/')
+    api.add_resource(_GetAll, '/')
     api.add_resource(_UpdateChessGame, "/update_game/<int:uid>")
     api.add_resource(_DeleteUser, "/delete_user/<int:uid>")
