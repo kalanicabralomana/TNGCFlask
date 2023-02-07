@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_restful import Api, Resource 
-from model_chess import Users
+from model_chess import ChessUsers
 
 import traceback
 
@@ -18,7 +18,7 @@ class ChessAPI:
     class _get(Resource):
         def get(self):
             try:
-                user = Users(name="aname", password="apassword")
+                user = ChessUsers(name="aname", password="apassword")
             except Exception as e:
                 return str(e)
             return user.read()
