@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_restful import Api, Resource 
 from model_chess import Users
 
-import requests   
+import traceback
 
 # Blueprints allow this code to be procedurally abstracted from main.py, meaning code is not all in one place
 server2 = Blueprint('test', __name__,
@@ -19,8 +19,8 @@ class ChessAPI:
         def get(self):
             try:
                 user = Users(name="aname", password="apassword")
-            except:
-                return "failed"
+            except Exception as e:
+                return str(e)
             return user.read()
 
     class _push(Resource):
