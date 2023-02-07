@@ -8,6 +8,8 @@ from flask import Blueprint, request, jsonify
 class Users(UserMixin, db.Model):
     __tablename__ = 'chess_users'
 
+    def printString():
+        return "a string"
     
     # Define the Users schema
     uid = db.Column(db.Integer, primary_key=True)

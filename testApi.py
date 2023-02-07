@@ -17,7 +17,7 @@ class ChessAPI:
 
     class _get(Resource):
         def get(self):
-            return str(Users.query.all()) + str(data)
+            return Users.printString()
 
     class _push(Resource):
         def post(self):
