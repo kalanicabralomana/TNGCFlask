@@ -15,7 +15,7 @@ class ChessAPI:
 
     class _get(Resource):
         def get(self):
-            return "data"
+            return data
 
     class _push(Resource):
         def post(self):
@@ -24,9 +24,6 @@ class ChessAPI:
             print(body)
             data.append(body)
             return data
-
-
-             
 
 
     api.add_resource(_get, '/')
