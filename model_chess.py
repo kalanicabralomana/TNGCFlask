@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from flask import Blueprint, request, jsonify
 
-class Users(UserMixin, db.Model):
+class ChessUsers(UserMixin, db.Model):
     __tablename__ = 'chess_users'
 
     def printString():
@@ -112,13 +112,13 @@ class Users(UserMixin, db.Model):
             return None
 
 def getUser(uid):
-    users = Users.query.all()
+    users = ChessUsers.query.all()
     for user in users:
         if(user.get_id() == uid):
             return user
         
 def make_id():
-    users = Users.query.all()
+    users = ChessUsers.query.all()
     uid = 0
     for user in users:
         if(user.get_id() > uid):
@@ -128,8 +128,9 @@ def make_id():
     return uid + 1
 
 if __name__ == "__main__":
-    print(make_id())
-    Users.deleteGame(getUser(100), "adsfasdf")
+    print("asdf")
+    # print(make_id())
+    # ChessUsers.deleteGame(getUser(100), "adsfasdf")
     # """Create required directories"""
     # try:
     #     os.makedirs('volumes')
