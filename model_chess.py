@@ -3,6 +3,7 @@ from __init__ import db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from flask import Blueprint, request, jsonify
 
 class Users(UserMixin, db.Model):
     __tablename__ = 'chess_users'
@@ -81,6 +82,9 @@ class Users(UserMixin, db.Model):
         db.session.commit()
         return None
 
+    def deleteGame(self, gameID):
+        print(self.games)
+
     # set password method is used to create encrypted password
     def set_password(self, password):
         """Create hashed password."""
@@ -123,6 +127,7 @@ def make_id():
 
 if __name__ == "__main__":
     print(make_id())
+    Users.deleteGame(getUser(100), "adsfasdf")
     # """Create required directories"""
     # try:
     #     os.makedirs('volumes')

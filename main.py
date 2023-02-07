@@ -8,8 +8,8 @@ from superCoolFile import chess_user_api
 from server1 import server1
 from bp_projects.projects import app_projects # Blueprint directory import projects definition
 
-app.register_blueprint(app_api2) # register api routes
-app.register_blueprint(user_api)
+# app.register_blueprint(app_api2) # register api routes
+# app.register_blueprint(user_api)
 app.register_blueprint(chess_user_api)
 app.register_blueprint(server1)
 app.register_blueprint(app_projects) # register api routes
