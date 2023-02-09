@@ -127,24 +127,34 @@ def make_id():
         return 100
     return uid + 1
 
+def createTable(user):
+    try:
+        '''add user/note data to table'''
+        db.session.add(user)
+        db.session.commit()
+    except IntegrityError:
+        '''fails with bad or duplicate data'''
+        db.session.remove()
+        print(f"Records exist, duplicate email, or error: {user.uid}")
+
+def createTestingData():
+    """Create required directories"""
+    try:
+        os.makedirs('volumes')
+        os.makedirs('volumes/uploads')
+    except:
+        pass
+    """Create database and tables"""
+    db.create_all()
+    u1 = ChessUsers(name='Toby', password="lmaobad")
+    createTable(u1)
+    u2 = ChessUsers(name='Gene', password="WRizz")
+    createTable(u2)
+
 if __name__ == "__main__":
+    # createTestingData()
+    user1 = ChessUsers(password="lame", name="Billy")
+    print(user1.uid)
+    # badUser = getUser(102)
+    # badUser.delete()
     print("asdf")
-    # print(make_id())
-    # ChessUsers.deleteGame(getUser(100), "adsfasdf")
-    # """Create required directories"""
-    # try:
-    #     os.makedirs('volumes')
-    #     os.makedirs('volumes/uploads')
-    # except:
-    #     pass
-    # """Create database and tables"""
-    # db.create_all()
-    # u1 = Users(name='Toby', uid='69420', password='123toby', dob="11-11-1111")
-    # try:
-    #     '''add user/note data to table'''
-    #     db.session.add(u1)
-    #     db.session.commit()
-    # except IntegrityError:
-    #     '''fails with bad or duplicate data'''
-    #     db.session.remove()
-    #     print(f"Records exist, duplicate email, or error: {u1.uid}")

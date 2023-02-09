@@ -5,7 +5,7 @@ from model_chess import ChessUsers
 import traceback
 
 # Blueprints allow this code to be procedurally abstracted from main.py, meaning code is not all in one place
-server2 = Blueprint('test', __name__,
+server2 = Blueprint('server2', __name__,
                    url_prefix='/api/server2')  # endpoint prefix avoid redundantly typing /api/jokes over and over
 
 # API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
