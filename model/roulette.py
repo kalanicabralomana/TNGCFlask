@@ -54,7 +54,7 @@ def init_roulettes():
         ("Bob", random.randint(50, 100)),
         ("Charlie", random.randint(50, 100)),
         ("Dave", random.randint(50, 100)),
-        ("Eve", random.randint(50, 100)),
+        ("Eve", random.randint(50, 100)), 
     ]
 
     roulettes = [Roulette(user, score) for user, score in users_scores]
